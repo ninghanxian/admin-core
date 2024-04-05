@@ -10,8 +10,7 @@ require (
 	github.com/mojocn/base64Captcha v1.3.6
 	github.com/qmcloud/admin-common v1.0.0
 	github.com/redis/go-redis/v9 v9.5.1
-	github.com/suyuan32/simple-admin-job v1.3.11
-	github.com/suyuan32/simple-admin-message-center v1.3.11
+	github.com/qmcloud/admin-core v1.0.0
 	github.com/zeromicro/go-zero v1.6.3
 	golang.org/x/oauth2 v0.18.0
 	google.golang.org/grpc v1.63.0

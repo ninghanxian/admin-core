@@ -6,7 +6,7 @@ import (
 	"github.com/qmcloud/admin-common/utils/captcha"
 	i18n2 "github.com/qmcloud/admin-core/api/internal/i18n"
 	"github.com/qmcloud/admin-core/api/internal/middleware"
-	"github.com/suyuan32/simple-admin-job/jobclient"
+	"github.com/qmcloud/admin-core/jobclient"
 	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
 	"github.com/zeromicro/go-zero/core/logx"
 

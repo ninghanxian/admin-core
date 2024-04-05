@@ -2350,3 +2350,1369 @@ var Core_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "rpc/core.proto",
 }
+
+const (
+	Mcms_SendEmail_FullMethodName            = "/core.Mcms/sendEmail"
+	Mcms_CreateEmailLog_FullMethodName       = "/core.Mcms/createEmailLog"
+	Mcms_UpdateEmailLog_FullMethodName       = "/core.Mcms/updateEmailLog"
+	Mcms_GetEmailLogList_FullMethodName      = "/core.Mcms/getEmailLogList"
+	Mcms_GetEmailLogById_FullMethodName      = "/core.Mcms/getEmailLogById"
+	Mcms_DeleteEmailLog_FullMethodName       = "/core.Mcms/deleteEmailLog"
+	Mcms_CreateEmailProvider_FullMethodName  = "/core.Mcms/createEmailProvider"
+	Mcms_UpdateEmailProvider_FullMethodName  = "/core.Mcms/updateEmailProvider"
+	Mcms_GetEmailProviderList_FullMethodName = "/core.Mcms/getEmailProviderList"
+	Mcms_GetEmailProviderById_FullMethodName = "/core.Mcms/getEmailProviderById"
+	Mcms_DeleteEmailProvider_FullMethodName  = "/core.Mcms/deleteEmailProvider"
+	Mcms_SendSms_FullMethodName              = "/core.Mcms/sendSms"
+	Mcms_CreateSmsLog_FullMethodName         = "/core.Mcms/createSmsLog"
+	Mcms_UpdateSmsLog_FullMethodName         = "/core.Mcms/updateSmsLog"
+	Mcms_GetSmsLogList_FullMethodName        = "/core.Mcms/getSmsLogList"
+	Mcms_GetSmsLogById_FullMethodName        = "/core.Mcms/getSmsLogById"
+	Mcms_DeleteSmsLog_FullMethodName         = "/core.Mcms/deleteSmsLog"
+	Mcms_CreateSmsProvider_FullMethodName    = "/core.Mcms/createSmsProvider"
+	Mcms_UpdateSmsProvider_FullMethodName    = "/core.Mcms/updateSmsProvider"
+	Mcms_GetSmsProviderList_FullMethodName   = "/core.Mcms/getSmsProviderList"
+	Mcms_GetSmsProviderById_FullMethodName   = "/core.Mcms/getSmsProviderById"
+	Mcms_DeleteSmsProvider_FullMethodName    = "/core.Mcms/deleteSmsProvider"
+)
+
+// McmsClient is the client API for Mcms service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type McmsClient interface {
+	// group: email
+	SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// EmailLog management
+	// group: emaillog
+	CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// group: emaillog
+	UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: emaillog
+	GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error)
+	// group: emaillog
+	GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error)
+	// group: emaillog
+	DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// EmailProvider management
+	// group: emailprovider
+	CreateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+	// group: emailprovider
+	UpdateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: emailprovider
+	GetEmailProviderList(ctx context.Context, in *EmailProviderListReq, opts ...grpc.CallOption) (*EmailProviderListResp, error)
+	// group: emailprovider
+	GetEmailProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*EmailProviderInfo, error)
+	// group: emailprovider
+	DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: sms
+	SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// SmsLog management
+	// group: smslog
+	CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
+	// group: smslog
+	UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: smslog
+	GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error)
+	// group: smslog
+	GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error)
+	// group: smslog
+	DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// SmsProvider management
+	// group: smsprovider
+	CreateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+	// group: smsprovider
+	UpdateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: smsprovider
+	GetSmsProviderList(ctx context.Context, in *SmsProviderListReq, opts ...grpc.CallOption) (*SmsProviderListResp, error)
+	// group: smsprovider
+	GetSmsProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*SmsProviderInfo, error)
+	// group: smsprovider
+	DeleteSmsProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+}
+
+type mcmsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMcmsClient(cc grpc.ClientConnInterface) McmsClient {
+	return &mcmsClient{cc}
+}
+
+func (c *mcmsClient) SendEmail(ctx context.Context, in *EmailInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_SendEmail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) CreateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateEmailLog(ctx context.Context, in *EmailLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailLogList(ctx context.Context, in *EmailLogListReq, opts ...grpc.CallOption) (*EmailLogListResp, error) {
+	out := new(EmailLogListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailLogList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*EmailLogInfo, error) {
+	out := new(EmailLogInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailLogById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteEmailLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteEmailLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) CreateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	out := new(BaseIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateEmailProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateEmailProvider(ctx context.Context, in *EmailProviderInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateEmailProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailProviderList(ctx context.Context, in *EmailProviderListReq, opts ...grpc.CallOption) (*EmailProviderListResp, error) {
+	out := new(EmailProviderListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailProviderList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetEmailProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*EmailProviderInfo, error) {
+	out := new(EmailProviderInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetEmailProviderById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteEmailProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_SendSms_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {
+	out := new(BaseUUIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsLogList(ctx context.Context, in *SmsLogListReq, opts ...grpc.CallOption) (*SmsLogListResp, error) {
+	out := new(SmsLogListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsLogList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsLogById(ctx context.Context, in *UUIDReq, opts ...grpc.CallOption) (*SmsLogInfo, error) {
+	out := new(SmsLogInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsLogById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteSmsLog(ctx context.Context, in *UUIDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteSmsLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) CreateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	out := new(BaseIDResp)
+	err := c.cc.Invoke(ctx, Mcms_CreateSmsProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) UpdateSmsProvider(ctx context.Context, in *SmsProviderInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_UpdateSmsProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsProviderList(ctx context.Context, in *SmsProviderListReq, opts ...grpc.CallOption) (*SmsProviderListResp, error) {
+	out := new(SmsProviderListResp)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsProviderList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) GetSmsProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*SmsProviderInfo, error) {
+	out := new(SmsProviderInfo)
+	err := c.cc.Invoke(ctx, Mcms_GetSmsProviderById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) DeleteSmsProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_DeleteSmsProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// McmsServer is the server API for Mcms service.
+// All implementations must embed UnimplementedMcmsServer
+// for forward compatibility
+type McmsServer interface {
+	// group: email
+	SendEmail(context.Context, *EmailInfo) (*BaseUUIDResp, error)
+	// EmailLog management
+	// group: emaillog
+	CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error)
+	// group: emaillog
+	UpdateEmailLog(context.Context, *EmailLogInfo) (*BaseResp, error)
+	// group: emaillog
+	GetEmailLogList(context.Context, *EmailLogListReq) (*EmailLogListResp, error)
+	// group: emaillog
+	GetEmailLogById(context.Context, *UUIDReq) (*EmailLogInfo, error)
+	// group: emaillog
+	DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error)
+	// EmailProvider management
+	// group: emailprovider
+	CreateEmailProvider(context.Context, *EmailProviderInfo) (*BaseIDResp, error)
+	// group: emailprovider
+	UpdateEmailProvider(context.Context, *EmailProviderInfo) (*BaseResp, error)
+	// group: emailprovider
+	GetEmailProviderList(context.Context, *EmailProviderListReq) (*EmailProviderListResp, error)
+	// group: emailprovider
+	GetEmailProviderById(context.Context, *IDReq) (*EmailProviderInfo, error)
+	// group: emailprovider
+	DeleteEmailProvider(context.Context, *IDsReq) (*BaseResp, error)
+	// group: sms
+	SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error)
+	// SmsLog management
+	// group: smslog
+	CreateSmsLog(context.Context, *SmsLogInfo) (*BaseUUIDResp, error)
+	// group: smslog
+	UpdateSmsLog(context.Context, *SmsLogInfo) (*BaseResp, error)
+	// group: smslog
+	GetSmsLogList(context.Context, *SmsLogListReq) (*SmsLogListResp, error)
+	// group: smslog
+	GetSmsLogById(context.Context, *UUIDReq) (*SmsLogInfo, error)
+	// group: smslog
+	DeleteSmsLog(context.Context, *UUIDsReq) (*BaseResp, error)
+	// SmsProvider management
+	// group: smsprovider
+	CreateSmsProvider(context.Context, *SmsProviderInfo) (*BaseIDResp, error)
+	// group: smsprovider
+	UpdateSmsProvider(context.Context, *SmsProviderInfo) (*BaseResp, error)
+	// group: smsprovider
+	GetSmsProviderList(context.Context, *SmsProviderListReq) (*SmsProviderListResp, error)
+	// group: smsprovider
+	GetSmsProviderById(context.Context, *IDReq) (*SmsProviderInfo, error)
+	// group: smsprovider
+	DeleteSmsProvider(context.Context, *IDsReq) (*BaseResp, error)
+	mustEmbedUnimplementedMcmsServer()
+}
+
+// UnimplementedMcmsServer must be embedded to have forward compatible implementations.
+type UnimplementedMcmsServer struct {
+}
+
+func (UnimplementedMcmsServer) SendEmail(context.Context, *EmailInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendEmail not implemented")
+}
+func (UnimplementedMcmsServer) CreateEmailLog(context.Context, *EmailLogInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) UpdateEmailLog(context.Context, *EmailLogInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailLogList(context.Context, *EmailLogListReq) (*EmailLogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailLogList not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailLogById(context.Context, *UUIDReq) (*EmailLogInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailLogById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteEmailLog(context.Context, *UUIDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmailLog not implemented")
+}
+func (UnimplementedMcmsServer) CreateEmailProvider(context.Context, *EmailProviderInfo) (*BaseIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateEmailProvider not implemented")
+}
+func (UnimplementedMcmsServer) UpdateEmailProvider(context.Context, *EmailProviderInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEmailProvider not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailProviderList(context.Context, *EmailProviderListReq) (*EmailProviderListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailProviderList not implemented")
+}
+func (UnimplementedMcmsServer) GetEmailProviderById(context.Context, *IDReq) (*EmailProviderInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEmailProviderById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteEmailProvider(context.Context, *IDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmailProvider not implemented")
+}
+func (UnimplementedMcmsServer) SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendSms not implemented")
+}
+func (UnimplementedMcmsServer) CreateSmsLog(context.Context, *SmsLogInfo) (*BaseUUIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSmsLog not implemented")
+}
+func (UnimplementedMcmsServer) UpdateSmsLog(context.Context, *SmsLogInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSmsLog not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsLogList(context.Context, *SmsLogListReq) (*SmsLogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsLogList not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsLogById(context.Context, *UUIDReq) (*SmsLogInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsLogById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteSmsLog(context.Context, *UUIDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSmsLog not implemented")
+}
+func (UnimplementedMcmsServer) CreateSmsProvider(context.Context, *SmsProviderInfo) (*BaseIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSmsProvider not implemented")
+}
+func (UnimplementedMcmsServer) UpdateSmsProvider(context.Context, *SmsProviderInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSmsProvider not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsProviderList(context.Context, *SmsProviderListReq) (*SmsProviderListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsProviderList not implemented")
+}
+func (UnimplementedMcmsServer) GetSmsProviderById(context.Context, *IDReq) (*SmsProviderInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSmsProviderById not implemented")
+}
+func (UnimplementedMcmsServer) DeleteSmsProvider(context.Context, *IDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSmsProvider not implemented")
+}
+func (UnimplementedMcmsServer) mustEmbedUnimplementedMcmsServer() {}
+
+// UnsafeMcmsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to McmsServer will
+// result in compilation errors.
+type UnsafeMcmsServer interface {
+	mustEmbedUnimplementedMcmsServer()
+}
+
+func RegisterMcmsServer(s grpc.ServiceRegistrar, srv McmsServer) {
+	s.RegisterService(&Mcms_ServiceDesc, srv)
+}
+
+func _Mcms_SendEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).SendEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_SendEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).SendEmail(ctx, req.(*EmailInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_CreateEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateEmailLog(ctx, req.(*EmailLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateEmailLog(ctx, req.(*EmailLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailLogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailLogList(ctx, req.(*EmailLogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailLogById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailLogById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailLogById(ctx, req.(*UUIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteEmailLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteEmailLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteEmailLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteEmailLog(ctx, req.(*UUIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_CreateEmailProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailProviderInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateEmailProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateEmailProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateEmailProvider(ctx, req.(*EmailProviderInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateEmailProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailProviderInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateEmailProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateEmailProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateEmailProvider(ctx, req.(*EmailProviderInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailProviderList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailProviderListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailProviderList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailProviderList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailProviderList(ctx, req.(*EmailProviderListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetEmailProviderById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetEmailProviderById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetEmailProviderById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetEmailProviderById(ctx, req.(*IDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteEmailProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteEmailProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteEmailProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteEmailProvider(ctx, req.(*IDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_SendSms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).SendSms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_SendSms_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).SendSms(ctx, req.(*SmsInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_CreateSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateSmsLog(ctx, req.(*SmsLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateSmsLog(ctx, req.(*SmsLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsLogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsLogList(ctx, req.(*SmsLogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsLogById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsLogById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsLogById(ctx, req.(*UUIDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteSmsLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UUIDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteSmsLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteSmsLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteSmsLog(ctx, req.(*UUIDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_CreateSmsProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsProviderInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).CreateSmsProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_CreateSmsProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).CreateSmsProvider(ctx, req.(*SmsProviderInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_UpdateSmsProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsProviderInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).UpdateSmsProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_UpdateSmsProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).UpdateSmsProvider(ctx, req.(*SmsProviderInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsProviderList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SmsProviderListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsProviderList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsProviderList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsProviderList(ctx, req.(*SmsProviderListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_GetSmsProviderById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).GetSmsProviderById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_GetSmsProviderById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).GetSmsProviderById(ctx, req.(*IDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_DeleteSmsProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).DeleteSmsProvider(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_DeleteSmsProvider_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).DeleteSmsProvider(ctx, req.(*IDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Mcms_ServiceDesc is the grpc.ServiceDesc for Mcms service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mcms_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "core.Mcms",
+	HandlerType: (*McmsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "sendEmail",
+			Handler:    _Mcms_SendEmail_Handler,
+		},
+		{
+			MethodName: "createEmailLog",
+			Handler:    _Mcms_CreateEmailLog_Handler,
+		},
+		{
+			MethodName: "updateEmailLog",
+			Handler:    _Mcms_UpdateEmailLog_Handler,
+		},
+		{
+			MethodName: "getEmailLogList",
+			Handler:    _Mcms_GetEmailLogList_Handler,
+		},
+		{
+			MethodName: "getEmailLogById",
+			Handler:    _Mcms_GetEmailLogById_Handler,
+		},
+		{
+			MethodName: "deleteEmailLog",
+			Handler:    _Mcms_DeleteEmailLog_Handler,
+		},
+		{
+			MethodName: "createEmailProvider",
+			Handler:    _Mcms_CreateEmailProvider_Handler,
+		},
+		{
+			MethodName: "updateEmailProvider",
+			Handler:    _Mcms_UpdateEmailProvider_Handler,
+		},
+		{
+			MethodName: "getEmailProviderList",
+			Handler:    _Mcms_GetEmailProviderList_Handler,
+		},
+		{
+			MethodName: "getEmailProviderById",
+			Handler:    _Mcms_GetEmailProviderById_Handler,
+		},
+		{
+			MethodName: "deleteEmailProvider",
+			Handler:    _Mcms_DeleteEmailProvider_Handler,
+		},
+		{
+			MethodName: "sendSms",
+			Handler:    _Mcms_SendSms_Handler,
+		},
+		{
+			MethodName: "createSmsLog",
+			Handler:    _Mcms_CreateSmsLog_Handler,
+		},
+		{
+			MethodName: "updateSmsLog",
+			Handler:    _Mcms_UpdateSmsLog_Handler,
+		},
+		{
+			MethodName: "getSmsLogList",
+			Handler:    _Mcms_GetSmsLogList_Handler,
+		},
+		{
+			MethodName: "getSmsLogById",
+			Handler:    _Mcms_GetSmsLogById_Handler,
+		},
+		{
+			MethodName: "deleteSmsLog",
+			Handler:    _Mcms_DeleteSmsLog_Handler,
+		},
+		{
+			MethodName: "createSmsProvider",
+			Handler:    _Mcms_CreateSmsProvider_Handler,
+		},
+		{
+			MethodName: "updateSmsProvider",
+			Handler:    _Mcms_UpdateSmsProvider_Handler,
+		},
+		{
+			MethodName: "getSmsProviderList",
+			Handler:    _Mcms_GetSmsProviderList_Handler,
+		},
+		{
+			MethodName: "getSmsProviderById",
+			Handler:    _Mcms_GetSmsProviderById_Handler,
+		},
+		{
+			MethodName: "deleteSmsProvider",
+			Handler:    _Mcms_DeleteSmsProvider_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "rpc/core.proto",
+}
+
+const (
+	Job_CreateTask_FullMethodName     = "/core.Job/createTask"
+	Job_UpdateTask_FullMethodName     = "/core.Job/updateTask"
+	Job_GetTaskList_FullMethodName    = "/core.Job/getTaskList"
+	Job_GetTaskById_FullMethodName    = "/core.Job/getTaskById"
+	Job_DeleteTask_FullMethodName     = "/core.Job/deleteTask"
+	Job_CreateTaskLog_FullMethodName  = "/core.Job/createTaskLog"
+	Job_UpdateTaskLog_FullMethodName  = "/core.Job/updateTaskLog"
+	Job_GetTaskLogList_FullMethodName = "/core.Job/getTaskLogList"
+	Job_GetTaskLogById_FullMethodName = "/core.Job/getTaskLogById"
+	Job_DeleteTaskLog_FullMethodName  = "/core.Job/deleteTaskLog"
+)
+
+// JobClient is the client API for Job service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type JobClient interface {
+	// Task management
+	// group: task
+	CreateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+	// group: task
+	UpdateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: task
+	GetTaskList(ctx context.Context, in *TaskListReq, opts ...grpc.CallOption) (*TaskListResp, error)
+	// group: task
+	GetTaskById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*TaskInfo, error)
+	// group: task
+	DeleteTask(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+	// TaskLog management
+	// group: tasklog
+	CreateTaskLog(ctx context.Context, in *TaskLogInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
+	// group: tasklog
+	UpdateTaskLog(ctx context.Context, in *TaskLogInfo, opts ...grpc.CallOption) (*BaseResp, error)
+	// group: tasklog
+	GetTaskLogList(ctx context.Context, in *TaskLogListReq, opts ...grpc.CallOption) (*TaskLogListResp, error)
+	// group: tasklog
+	GetTaskLogById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*TaskLogInfo, error)
+	// group: tasklog
+	DeleteTaskLog(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+}
+
+type jobClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewJobClient(cc grpc.ClientConnInterface) JobClient {
+	return &jobClient{cc}
+}
+
+func (c *jobClient) CreateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	out := new(BaseIDResp)
+	err := c.cc.Invoke(ctx, Job_CreateTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) UpdateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Job_UpdateTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) GetTaskList(ctx context.Context, in *TaskListReq, opts ...grpc.CallOption) (*TaskListResp, error) {
+	out := new(TaskListResp)
+	err := c.cc.Invoke(ctx, Job_GetTaskList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) GetTaskById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*TaskInfo, error) {
+	out := new(TaskInfo)
+	err := c.cc.Invoke(ctx, Job_GetTaskById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) DeleteTask(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Job_DeleteTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) CreateTaskLog(ctx context.Context, in *TaskLogInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
+	out := new(BaseIDResp)
+	err := c.cc.Invoke(ctx, Job_CreateTaskLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) UpdateTaskLog(ctx context.Context, in *TaskLogInfo, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Job_UpdateTaskLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) GetTaskLogList(ctx context.Context, in *TaskLogListReq, opts ...grpc.CallOption) (*TaskLogListResp, error) {
+	out := new(TaskLogListResp)
+	err := c.cc.Invoke(ctx, Job_GetTaskLogList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) GetTaskLogById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*TaskLogInfo, error) {
+	out := new(TaskLogInfo)
+	err := c.cc.Invoke(ctx, Job_GetTaskLogById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobClient) DeleteTaskLog(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Job_DeleteTaskLog_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// JobServer is the server API for Job service.
+// All implementations must embed UnimplementedJobServer
+// for forward compatibility
+type JobServer interface {
+	// Task management
+	// group: task
+	CreateTask(context.Context, *TaskInfo) (*BaseIDResp, error)
+	// group: task
+	UpdateTask(context.Context, *TaskInfo) (*BaseResp, error)
+	// group: task
+	GetTaskList(context.Context, *TaskListReq) (*TaskListResp, error)
+	// group: task
+	GetTaskById(context.Context, *IDReq) (*TaskInfo, error)
+	// group: task
+	DeleteTask(context.Context, *IDsReq) (*BaseResp, error)
+	// TaskLog management
+	// group: tasklog
+	CreateTaskLog(context.Context, *TaskLogInfo) (*BaseIDResp, error)
+	// group: tasklog
+	UpdateTaskLog(context.Context, *TaskLogInfo) (*BaseResp, error)
+	// group: tasklog
+	GetTaskLogList(context.Context, *TaskLogListReq) (*TaskLogListResp, error)
+	// group: tasklog
+	GetTaskLogById(context.Context, *IDReq) (*TaskLogInfo, error)
+	// group: tasklog
+	DeleteTaskLog(context.Context, *IDsReq) (*BaseResp, error)
+	mustEmbedUnimplementedJobServer()
+}
+
+// UnimplementedJobServer must be embedded to have forward compatible implementations.
+type UnimplementedJobServer struct {
+}
+
+func (UnimplementedJobServer) CreateTask(context.Context, *TaskInfo) (*BaseIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTask not implemented")
+}
+func (UnimplementedJobServer) UpdateTask(context.Context, *TaskInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTask not implemented")
+}
+func (UnimplementedJobServer) GetTaskList(context.Context, *TaskListReq) (*TaskListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskList not implemented")
+}
+func (UnimplementedJobServer) GetTaskById(context.Context, *IDReq) (*TaskInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskById not implemented")
+}
+func (UnimplementedJobServer) DeleteTask(context.Context, *IDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTask not implemented")
+}
+func (UnimplementedJobServer) CreateTaskLog(context.Context, *TaskLogInfo) (*BaseIDResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTaskLog not implemented")
+}
+func (UnimplementedJobServer) UpdateTaskLog(context.Context, *TaskLogInfo) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTaskLog not implemented")
+}
+func (UnimplementedJobServer) GetTaskLogList(context.Context, *TaskLogListReq) (*TaskLogListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskLogList not implemented")
+}
+func (UnimplementedJobServer) GetTaskLogById(context.Context, *IDReq) (*TaskLogInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskLogById not implemented")
+}
+func (UnimplementedJobServer) DeleteTaskLog(context.Context, *IDsReq) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTaskLog not implemented")
+}
+func (UnimplementedJobServer) mustEmbedUnimplementedJobServer() {}
+
+// UnsafeJobServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to JobServer will
+// result in compilation errors.
+type UnsafeJobServer interface {
+	mustEmbedUnimplementedJobServer()
+}
+
+func RegisterJobServer(s grpc.ServiceRegistrar, srv JobServer) {
+	s.RegisterService(&Job_ServiceDesc, srv)
+}
+
+func _Job_CreateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).CreateTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_CreateTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).CreateTask(ctx, req.(*TaskInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_UpdateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).UpdateTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_UpdateTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).UpdateTask(ctx, req.(*TaskInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_GetTaskList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).GetTaskList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_GetTaskList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).GetTaskList(ctx, req.(*TaskListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_GetTaskById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).GetTaskById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_GetTaskById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).GetTaskById(ctx, req.(*IDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_DeleteTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).DeleteTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_DeleteTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).DeleteTask(ctx, req.(*IDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_CreateTaskLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).CreateTaskLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_CreateTaskLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).CreateTaskLog(ctx, req.(*TaskLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_UpdateTaskLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskLogInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).UpdateTaskLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_UpdateTaskLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).UpdateTaskLog(ctx, req.(*TaskLogInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_GetTaskLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskLogListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).GetTaskLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_GetTaskLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).GetTaskLogList(ctx, req.(*TaskLogListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_GetTaskLogById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).GetTaskLogById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_GetTaskLogById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).GetTaskLogById(ctx, req.(*IDReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Job_DeleteTaskLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IDsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).DeleteTaskLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_DeleteTaskLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).DeleteTaskLog(ctx, req.(*IDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Job_ServiceDesc is the grpc.ServiceDesc for Job service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Job_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "core.Job",
+	HandlerType: (*JobServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "createTask",
+			Handler:    _Job_CreateTask_Handler,
+		},
+		{
+			MethodName: "updateTask",
+			Handler:    _Job_UpdateTask_Handler,
+		},
+		{
+			MethodName: "getTaskList",
+			Handler:    _Job_GetTaskList_Handler,
+		},
+		{
+			MethodName: "getTaskById",
+			Handler:    _Job_GetTaskById_Handler,
+		},
+		{
+			MethodName: "deleteTask",
+			Handler:    _Job_DeleteTask_Handler,
+		},
+		{
+			MethodName: "createTaskLog",
+			Handler:    _Job_CreateTaskLog_Handler,
+		},
+		{
+			MethodName: "updateTaskLog",
+			Handler:    _Job_UpdateTaskLog_Handler,
+		},
+		{
+			MethodName: "getTaskLogList",
+			Handler:    _Job_GetTaskLogList_Handler,
+		},
+		{
+			MethodName: "getTaskLogById",
+			Handler:    _Job_GetTaskLogById_Handler,
+		},
+		{
+			MethodName: "deleteTaskLog",
+			Handler:    _Job_DeleteTaskLog_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "rpc/core.proto",
+}

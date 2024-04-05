@@ -481,8 +481,8 @@ github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8
 github.com/subosito/gotenv v1.2.0/go.mod h1:N0PQaV/YGNqwC0u51sEeR/aUtSLEXKX9iv69rRypqCw=
 github.com/suyuan32/base64Captcha v1.3.7 h1:B5+ArqVlnzdO+5oyHzvz1nKSipUcicaHEBMFZb7hpv4=
 github.com/suyuan32/base64Captcha v1.3.7/go.mod h1:XXuqS4lYf+ANu15oTrA2Z47hv8R2h9nVVH5IJRmxLZQ=
-github.com/suyuan32/simple-admin-job v1.3.11 h1:Yw7/V7ZMMm85xZy5amaWxAFqF97v/mjnAFO1G/lCk04=
-github.com/suyuan32/simple-admin-job v1.3.11/go.mod h1:3HtdriHlqjISlH1h9ikrjfOItfzUgYojNc3SIuWCD80=
+github.com/qmcloud/admin-core v1.3.11 h1:Yw7/V7ZMMm85xZy5amaWxAFqF97v/mjnAFO1G/lCk04=
+github.com/qmcloud/admin-core v1.3.11/go.mod h1:3HtdriHlqjISlH1h9ikrjfOItfzUgYojNc3SIuWCD80=
 github.com/suyuan32/simple-admin-message-center v1.3.11 h1:KyY4Aay6wr1xZWLT2rRaGfxXtE8fibUIXi6uTYeB3cg=
 github.com/suyuan32/simple-admin-message-center v1.3.11/go.mod h1:Vyi2prQACQzc9Fa3gakexZEOWgSgVBxm8L/yiNBqwk8=
 github.com/suyuan32/simple-admin-tools v1.6.9 h1:wEHV1YeEXdyKIh5MHT73NxQaNGKZo4eLzzK2bg7Zvho=

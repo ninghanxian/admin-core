@@ -1,21 +1,112 @@
 syntax = "proto3";
 
 package core;
-option go_package = "./core";
+option go_package="./core";
 
-message MenuRoleListResp {
-  uint64 total = 1;
-  repeated MenuRoleInfo data = 2;
+message DepartmentInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string ancestors = 7;
+  optional string leader = 8;
+  optional string phone = 9;
+  optional string email = 10;
+  optional string remark = 11;
+  optional uint64 parent_id = 12;
 }
 
-message PositionListResp {
-  uint64 total = 1;
-  repeated PositionInfo data = 2;
+message DictionaryListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+}
+
+message EmailLogInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string target = 4;
+  optional string subject = 5;
+  optional string content = 6;
+  optional uint32 send_status = 7;
+  optional string provider = 8;
+}
+
+message RoleListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string default_router = 5;
+}
+
+message EmailProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string email_addr = 4;
+}
+
+message MenuInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 level = 4;
+  optional uint64 parent_id = 5;
+  optional string path = 6;
+  optional string name = 7;
+  optional string redirect = 8;
+  optional string component = 9;
+  optional uint32 sort = 10;
+  optional bool disabled = 11;
+  optional Meta meta = 12;
+  optional uint32 menu_type = 13;
+  optional string service_name = 14;
+}
+
+message IDReq {
+  uint64 id = 1;
+}
+
+message BaseResp {
+  string msg = 1;
+}
+
+message OauthLoginReq {
+  string state = 1;
+  string provider = 2;
+}
+
+message SmsProviderInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string name = 4;
+  optional string secret_id = 5;
+  optional string secret_key = 6;
+  optional string region = 7;
+  optional bool is_default = 8;
+}
+
+message PositionListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional string remark = 5;
 }
 
 message RoleListResp {
   uint64 total = 1;
   repeated RoleInfo data = 2;
+}
+
+message TaskListResp {
+  uint64 total = 1;
+  repeated TaskInfo data = 2;
 }
 
 message UserInfo {
@@ -38,101 +129,34 @@ message UserInfo {
   repeated string role_name = 17;
 }
 
-message UsernameReq {
-  string username = 1;
-}
-
-message IDsReq {
-  repeated uint64 ids = 1;
-}
-
-message DepartmentListReq {
+message ApiListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional string name = 3;
-  optional string leader = 4;
+  optional string path = 3;
+  optional string description = 4;
+  optional string api_group = 5;
+  optional string method = 6;
+  optional string is_default = 7;
+  optional string service_name = 8;
 }
 
-message UUIDsReq {
-  repeated string ids = 1;
+message PageInfoReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
 }
 
-message UUIDReq {
+message BaseMsg {
+  string msg = 1;
+}
+
+message BaseUUIDResp {
   string id = 1;
-}
-
-message BaseIDResp {
-  uint64 id = 1;
   string msg = 2;
 }
 
-message DictionaryDetailInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string title = 5;
-  optional string key = 6;
-  optional string value = 7;
-  optional uint64 dictionary_id = 8;
-  optional uint32 sort = 9;
-}
-
-message DictionaryDetailListResp {
+message UserListResp {
   uint64 total = 1;
-  repeated DictionaryDetailInfo data = 2;
-}
-
-message MenuRoleInfo {
-  uint64 id = 1;
-  uint64 menu_id = 2;
-  uint64 role_id = 3;
-}
-
-message ApiInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional string path = 4;
-  optional string description = 5;
-  optional string api_group = 6;
-  optional string method = 7;
-  optional bool is_required = 8;
-  optional string service_name = 9;
-}
-
-//  authorization message
-message RoleMenuAuthorityReq {
-  uint64 role_id = 1;
-  repeated uint64 menu_id = 2;
-}
-
-message CallbackReq {
-  string state = 1;
-  string code = 2;
-}
-
-message PositionListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional string name = 3;
-  optional string code = 4;
-  optional string remark = 5;
-}
-
-message DepartmentInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional uint32 sort = 5;
-  optional string name = 6;
-  optional string ancestors = 7;
-  optional string leader = 8;
-  optional string phone = 9;
-  optional string email = 10;
-  optional string remark = 11;
-  optional uint64 parent_id = 12;
+  repeated UserInfo data = 2;
 }
 
 message OauthProviderInfo {
@@ -150,24 +174,73 @@ message OauthProviderInfo {
   optional string info_url = 12;
 }
 
-message OauthLoginReq {
-  string state = 1;
-  string provider = 2;
+message SmsProviderListResp {
+  uint64 total = 1;
+  repeated SmsProviderInfo data = 2;
 }
 
-message OauthRedirectResp {
-  string url = 1;
+message SmsProviderListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
 }
 
-message PositionInfo {
+message IDsReq {
+  repeated uint64 ids = 1;
+}
+
+message DictionaryInfo {
   optional uint64 id = 1;
   optional int64 created_at = 2;
   optional int64 updated_at = 3;
   optional uint32 status = 4;
-  optional uint32 sort = 5;
+  optional string title = 5;
   optional string name = 6;
-  optional string code = 7;
-  optional string remark = 8;
+  optional string desc = 7;
+}
+
+message DictionaryDetailInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string title = 5;
+  optional string key = 6;
+  optional string value = 7;
+  optional uint64 dictionary_id = 8;
+  optional uint32 sort = 9;
+}
+
+message EmailInfo {
+  repeated string target = 1;
+  string subject = 2;
+  string content = 3;
+  optional string provider = 4;
+}
+
+message ApiListResp {
+  uint64 total = 1;
+  repeated ApiInfo data = 2;
+}
+
+message TaskLogListResp {
+  uint64 total = 1;
+  repeated TaskLogInfo data = 2;
+}
+
+//  return the role's authorization menu's ids
+message RoleMenuAuthorityResp {
+  repeated uint64 menu_id = 1;
+}
+
+message MenuInfoList {
+  uint64 total = 1;
+  repeated MenuInfo data = 2;
+}
+
+message CallbackReq {
+  string state = 1;
+  string code = 2;
 }
 
 message RoleInfo {
@@ -182,20 +255,90 @@ message RoleInfo {
   optional uint32 sort = 9;
 }
 
-//  return the role's authorization menu's ids
-message RoleMenuAuthorityResp {
-  repeated uint64 menu_id = 1;
+//  authorization message
+message RoleMenuAuthorityReq {
+  uint64 role_id = 1;
+  repeated uint64 menu_id = 2;
 }
 
-//  base message
-message Empty {}
+message TokenInfo {
+  optional string id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string uuid = 5;
+  optional string token = 6;
+  optional string source = 7;
+  optional int64 expired_at = 8;
+  optional string username = 9;
+}
 
-message RoleListReq {
+message SmsLogListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional string name = 3;
-  optional string code = 4;
-  optional string default_router = 5;
+  optional string phone_number = 3;
+  optional string content = 4;
+  optional string provider = 5;
+  optional uint32 send_status = 6;
+}
+
+message TaskInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional string name = 5;
+  optional string task_group = 6;
+  optional string cron_expression = 7;
+  optional string pattern = 8;
+  optional string payload = 9;
+}
+
+message UsernameReq {
+  string username = 1;
+}
+
+message DictionaryDetailListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional uint64 dictionary_id = 3;
+  optional string key = 4;
+}
+
+message MenuRoleInfo {
+  uint64 id = 1;
+  uint64 menu_id = 2;
+  uint64 role_id = 3;
+}
+
+message OauthProviderListResp {
+  uint64 total = 1;
+  repeated OauthProviderInfo data = 2;
+}
+
+message OauthRedirectResp {
+  string url = 1;
+}
+
+message DepartmentListResp {
+  uint64 total = 1;
+  repeated DepartmentInfo data = 2;
+}
+
+message EmailProviderInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string name = 4;
+  optional uint32 auth_type = 5;
+  optional string email_addr = 6;
+  optional string password = 7;
+  optional string host_name = 8;
+  optional string identify = 9;
+  optional string secret = 10;
+  optional uint32 port = 11;
+  optional bool tls = 12;
+  optional bool is_default = 13;
 }
 
 message UserListReq {
@@ -210,66 +353,43 @@ message UserListReq {
   repeated uint64 position_ids = 9;
 }
 
-message BaseResp {
-  string msg = 1;
-}
-
-message ApiListResp {
+message EmailLogListResp {
   uint64 total = 1;
-  repeated ApiInfo data = 2;
+  repeated EmailLogInfo data = 2;
 }
 
-message ApiListReq {
+message EmailProviderListResp {
+  uint64 total = 1;
+  repeated EmailProviderInfo data = 2;
+}
+
+message MenuRoleListResp {
+  uint64 total = 1;
+  repeated MenuRoleInfo data = 2;
+}
+
+//  base message
+message Empty {}
+
+message BaseIDResp {
+  uint64 id = 1;
+  string msg = 2;
+}
+
+message DepartmentListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional string path = 3;
-  optional string description = 4;
-  optional string api_group = 5;
-  optional string method = 6;
-  optional string is_default = 7;
-  optional string service_name = 8;
+  optional string name = 3;
+  optional string leader = 4;
 }
 
-message UserListResp {
+message DictionaryDetailListResp {
   uint64 total = 1;
-  repeated UserInfo data = 2;
+  repeated DictionaryDetailInfo data = 2;
 }
 
-message DictionaryInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string title = 5;
-  optional string name = 6;
-  optional string desc = 7;
-}
-
-message OauthProviderListResp {
-  uint64 total = 1;
-  repeated OauthProviderInfo data = 2;
-}
-
-message DictionaryListResp {
-  uint64 total = 1;
-  repeated DictionaryInfo data = 2;
-}
-
-message MenuInfo {
-  optional uint64 id = 1;
-  optional int64 created_at = 2;
-  optional int64 updated_at = 3;
-  optional uint32 level = 4;
-  optional uint64 parent_id = 5;
-  optional string path = 6;
-  optional string name = 7;
-  optional string redirect = 8;
-  optional string component = 9;
-  optional uint32 sort = 10;
-  optional bool disabled = 11;
-  optional Meta meta = 12;
-  optional uint32 menu_type = 13;
-  optional string service_name = 14;
+message UUIDsReq {
+  repeated string ids = 1;
 }
 
 message Meta {
@@ -287,21 +407,75 @@ message Meta {
   optional string real_path = 12;
 }
 
-message MenuInfoList {
-  uint64 total = 1;
-  repeated MenuInfo data = 2;
+message UUIDReq {
+  string id = 1;
 }
 
-message TokenInfo {
+message TaskListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string name = 3;
+  optional string task_group = 4;
+}
+
+message DictionaryListResp {
+  uint64 total = 1;
+  repeated DictionaryInfo data = 2;
+}
+
+message EmailLogListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string target = 3;
+  optional string subject = 4;
+  optional string provider = 5;
+  optional uint32 send_status = 6;
+}
+
+message SmsLogInfo {
   optional string id = 1;
   optional int64 created_at = 2;
   optional int64 updated_at = 3;
-  optional uint32 status = 4;
-  optional string uuid = 5;
-  optional string token = 6;
-  optional string source = 7;
-  optional int64 expired_at = 8;
-  optional string username = 9;
+  optional string phone_number = 4;
+  optional string content = 5;
+  optional uint32 send_status = 6;
+  optional string provider = 7;
+}
+
+message TokenListResp {
+  uint64 total = 1;
+  repeated TokenInfo data = 2;
+}
+
+message ApiInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional string path = 4;
+  optional string description = 5;
+  optional string api_group = 6;
+  optional string method = 7;
+  optional bool is_required = 8;
+  optional string service_name = 9;
+}
+
+message PositionListResp {
+  uint64 total = 1;
+  repeated PositionInfo data = 2;
+}
+
+message SmsLogListResp {
+  uint64 total = 1;
+  repeated SmsLogInfo data = 2;
+}
+
+message TaskLogInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional int64 started_at = 4;
+  optional int64 finished_at = 5;
+  optional uint32 result = 6;
 }
 
 message TokenListReq {
@@ -313,51 +487,37 @@ message TokenListReq {
   optional string uuid = 6;
 }
 
-message PageInfoReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-}
-
-message BaseUUIDResp {
-  string id = 1;
-  string msg = 2;
-}
-
-message TokenListResp {
-  uint64 total = 1;
-  repeated TokenInfo data = 2;
-}
-
-message BaseMsg {
-  string msg = 1;
-}
-
-message DepartmentListResp {
-  uint64 total = 1;
-  repeated DepartmentInfo data = 2;
-}
-
-message DictionaryDetailListReq {
-  uint64 page = 1;
-  uint64 page_size = 2;
-  optional uint64 dictionary_id = 3;
-  optional string key = 4;
-}
-
 message OauthProviderListReq {
   uint64 page = 1;
   uint64 page_size = 2;
   optional string name = 3;
 }
 
-message IDReq {
-  uint64 id = 1;
+message PositionInfo {
+  optional uint64 id = 1;
+  optional int64 created_at = 2;
+  optional int64 updated_at = 3;
+  optional uint32 status = 4;
+  optional uint32 sort = 5;
+  optional string name = 6;
+  optional string code = 7;
+  optional string remark = 8;
 }
 
-message DictionaryListReq {
+message SmsInfo {
+  repeated string phone_number = 1;
+  repeated string params = 2;
+  optional string template_id = 4;
+  optional string app_id = 5;
+  optional string sign_name = 6;
+  optional string provider = 7;
+}
+
+message TaskLogListReq {
   uint64 page = 1;
   uint64 page_size = 2;
-  optional string name = 3;
+  optional uint64 task_id = 3;
+  optional uint32 result = 4;
 }
 
 service Core {
@@ -486,5 +646,81 @@ service Core {
   rpc getUserByUsername(UsernameReq) returns (UserInfo);
   //  group: user
   rpc deleteUser(UUIDsReq) returns (BaseResp);
+}
+
+service Mcms {
+  //  group: email
+  rpc sendEmail(EmailInfo) returns (BaseUUIDResp);
+  //  EmailLog management
+  //  group: emaillog
+  rpc createEmailLog(EmailLogInfo) returns (BaseUUIDResp);
+  //  group: emaillog
+  rpc updateEmailLog(EmailLogInfo) returns (BaseResp);
+  //  group: emaillog
+  rpc getEmailLogList(EmailLogListReq) returns (EmailLogListResp);
+  //  group: emaillog
+  rpc getEmailLogById(UUIDReq) returns (EmailLogInfo);
+  //  group: emaillog
+  rpc deleteEmailLog(UUIDsReq) returns (BaseResp);
+  //  EmailProvider management
+  //  group: emailprovider
+  rpc createEmailProvider(EmailProviderInfo) returns (BaseIDResp);
+  //  group: emailprovider
+  rpc updateEmailProvider(EmailProviderInfo) returns (BaseResp);
+  //  group: emailprovider
+  rpc getEmailProviderList(EmailProviderListReq) returns (EmailProviderListResp);
+  //  group: emailprovider
+  rpc getEmailProviderById(IDReq) returns (EmailProviderInfo);
+  //  group: emailprovider
+  rpc deleteEmailProvider(IDsReq) returns (BaseResp);
+  //  group: sms
+  rpc sendSms(SmsInfo) returns (BaseUUIDResp);
+  //  SmsLog management
+  //  group: smslog
+  rpc createSmsLog(SmsLogInfo) returns (BaseUUIDResp);
+  //  group: smslog
+  rpc updateSmsLog(SmsLogInfo) returns (BaseResp);
+  //  group: smslog
+  rpc getSmsLogList(SmsLogListReq) returns (SmsLogListResp);
+  //  group: smslog
+  rpc getSmsLogById(UUIDReq) returns (SmsLogInfo);
+  //  group: smslog
+  rpc deleteSmsLog(UUIDsReq) returns (BaseResp);
+  //  SmsProvider management
+  //  group: smsprovider
+  rpc createSmsProvider(SmsProviderInfo) returns (BaseIDResp);
+  //  group: smsprovider
+  rpc updateSmsProvider(SmsProviderInfo) returns (BaseResp);
+  //  group: smsprovider
+  rpc getSmsProviderList(SmsProviderListReq) returns (SmsProviderListResp);
+  //  group: smsprovider
+  rpc getSmsProviderById(IDReq) returns (SmsProviderInfo);
+  //  group: smsprovider
+  rpc deleteSmsProvider(IDsReq) returns (BaseResp);
+}
+
+service Job {
+  //  Task management
+  //  group: task
+  rpc createTask(TaskInfo) returns (BaseIDResp);
+  //  group: task
+  rpc updateTask(TaskInfo) returns (BaseResp);
+  //  group: task
+  rpc getTaskList(TaskListReq) returns (TaskListResp);
+  //  group: task
+  rpc getTaskById(IDReq) returns (TaskInfo);
+  //  group: task
+  rpc deleteTask(IDsReq) returns (BaseResp);
+  //  TaskLog management
+  //  group: tasklog
+  rpc createTaskLog(TaskLogInfo) returns (BaseIDResp);
+  //  group: tasklog
+  rpc updateTaskLog(TaskLogInfo) returns (BaseResp);
+  //  group: tasklog
+  rpc getTaskLogList(TaskLogListReq) returns (TaskLogListResp);
+  //  group: tasklog
+  rpc getTaskLogById(IDReq) returns (TaskLogInfo);
+  //  group: tasklog
+  rpc deleteTaskLog(IDsReq) returns (BaseResp);
 }
 
