@@ -14,5 +14,6 @@ message SmsInfo {
 
 service Mcms {
   // group: sms
+  rpc initDatabase (Empty) returns (BaseResp);
   rpc sendSms(SmsInfo) returns (BaseUUIDResp);
 }

@@ -5,8 +5,8 @@ import (
 	"github.com/qmcloud/admin-common/enum/common"
 	"github.com/qmcloud/admin-common/i18n"
 	"github.com/qmcloud/admin-common/utils/pointy"
+	"github.com/qmcloud/admin-core/rpc/client/mcms"
 	"github.com/qmcloud/admin-core/rpc/types/core"
-	"github.com/suyuan32/simple-admin-message-center/types/mcms"
 	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/qmcloud/admin-core/api/internal/svc"

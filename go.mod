@@ -5,12 +5,12 @@ go 1.22.0
 require (
 	entgo.io/ent v0.13.1
 	github.com/bsm/redislock v0.9.4
+	github.com/casbin/casbin/v2 v2.86.0
 	github.com/duke-git/lancet/v2 v2.3.0
 	github.com/gofrs/uuid/v5 v5.0.0
 	github.com/mojocn/base64Captcha v1.3.6
 	github.com/qmcloud/admin-common v1.0.0
 	github.com/redis/go-redis/v9 v9.5.1
-	github.com/qmcloud/admin-core v1.0.0
 	github.com/zeromicro/go-zero v1.6.3
 	golang.org/x/oauth2 v0.18.0
 	google.golang.org/grpc v1.63.0
@@ -23,7 +23,6 @@ require (
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/casbin/casbin/v2 v2.86.0 // indirect
 	github.com/casbin/ent-adapter v0.3.0 // indirect
 	github.com/casbin/govaluate v1.1.1 // indirect
 	github.com/casbin/redis-watcher/v2 v2.5.0 // indirect

@@ -50,3 +50,4 @@ service Core {
   // group: base
   rpc initDatabase (Empty) returns (BaseResp);
 }
+

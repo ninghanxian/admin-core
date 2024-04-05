@@ -96,6 +96,7 @@ type (
 		GetEmailProviderList(ctx context.Context, in *EmailProviderListReq, opts ...grpc.CallOption) (*EmailProviderListResp, error)
 		GetEmailProviderById(ctx context.Context, in *IDReq, opts ...grpc.CallOption) (*EmailProviderInfo, error)
 		DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
+		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 		SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 		// SmsLog management
 		CreateSmsLog(ctx context.Context, in *SmsLogInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
@@ -177,6 +178,11 @@ func (m *defaultMcms) GetEmailProviderById(ctx context.Context, in *IDReq, opts 
 func (m *defaultMcms) DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	client := core.NewMcmsClient(m.cli.Conn())
 	return client.DeleteEmailProvider(ctx, in, opts...)
+}
+
+func (m *defaultMcms) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewMcmsClient(m.cli.Conn())
+	return client.InitDatabase(ctx, in, opts...)
 }
 
 func (m *defaultMcms) SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error) {

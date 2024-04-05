@@ -28,7 +28,7 @@ message TaskListReq {
 
 
 service Job {
-
+  rpc initDatabase (Empty) returns (BaseResp);
   // Task management
   // group: task
   rpc createTask (TaskInfo) returns (BaseIDResp);

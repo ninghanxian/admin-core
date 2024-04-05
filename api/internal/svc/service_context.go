@@ -1,17 +1,20 @@
 package svc
 
 import (
+	"github.com/casbin/casbin/v2"
 	"github.com/mojocn/base64Captcha"
 	"github.com/qmcloud/admin-common/i18n"
 	"github.com/qmcloud/admin-common/utils/captcha"
 	i18n2 "github.com/qmcloud/admin-core/api/internal/i18n"
 	"github.com/qmcloud/admin-core/api/internal/middleware"
-	"github.com/qmcloud/admin-core/jobclient"
-	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
+	"github.com/redis/go-redis/v9"
+
 	"github.com/zeromicro/go-zero/core/logx"
 
 	"github.com/qmcloud/admin-core/api/internal/config"
-	"github.com/qmcloud/admin-core/rpc/coreclient"
+	coreclient "github.com/qmcloud/admin-core/rpc/client/core"
+	jobclient "github.com/qmcloud/admin-core/rpc/client/job"
+	mcmsclient "github.com/qmcloud/admin-core/rpc/client/mcms"
 
 	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/zrpc"

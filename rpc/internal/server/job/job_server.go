@@ -23,6 +23,11 @@ func NewJobServer(svcCtx *svc.ServiceContext) *JobServer {
 	}
 }
 
+func (s *JobServer) InitDatabase(ctx context.Context, in *core.Empty) (*core.BaseResp, error) {
+	l := joblogic.NewInitDatabaseLogic(ctx, s.svcCtx)
+	return l.InitDatabase(in)
+}
+
 // Task management
 func (s *JobServer) CreateTask(ctx context.Context, in *core.TaskInfo) (*core.BaseIDResp, error) {
 	l := task.NewCreateTaskLogic(ctx, s.svcCtx)

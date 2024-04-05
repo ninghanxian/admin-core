@@ -84,8 +84,13 @@ func (s *McmsServer) DeleteEmailProvider(ctx context.Context, in *core.IDsReq) (
 	return l.DeleteEmailProvider(in)
 }
 
+func (s *McmsServer) InitDatabase(ctx context.Context, in *core.Empty) (*core.BaseResp, error) {
+	l := sms.NewInitDatabaseLogic(ctx, s.svcCtx)
+	return l.InitDatabase(in)
+}
+
 func (s *McmsServer) SendSms(ctx context.Context, in *core.SmsInfo) (*core.BaseUUIDResp, error) {
-	l := sms.NewSendSmsLogic(ctx, s.svcCtx)
+	l := mcmslogic.NewSendSmsLogic(ctx, s.svcCtx)
 	return l.SendSms(in)
 }
 

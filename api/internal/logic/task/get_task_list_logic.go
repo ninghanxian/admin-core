@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/qmcloud/admin-core/types/job"
+	"github.com/qmcloud/admin-core/rpc/client/job"
 
 	"github.com/qmcloud/admin-core/api/internal/svc"
 	"github.com/qmcloud/admin-core/api/internal/types"

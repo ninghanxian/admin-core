@@ -2363,6 +2363,7 @@ const (
 	Mcms_GetEmailProviderList_FullMethodName = "/core.Mcms/getEmailProviderList"
 	Mcms_GetEmailProviderById_FullMethodName = "/core.Mcms/getEmailProviderById"
 	Mcms_DeleteEmailProvider_FullMethodName  = "/core.Mcms/deleteEmailProvider"
+	Mcms_InitDatabase_FullMethodName         = "/core.Mcms/initDatabase"
 	Mcms_SendSms_FullMethodName              = "/core.Mcms/sendSms"
 	Mcms_CreateSmsLog_FullMethodName         = "/core.Mcms/createSmsLog"
 	Mcms_UpdateSmsLog_FullMethodName         = "/core.Mcms/updateSmsLog"
@@ -2405,6 +2406,7 @@ type McmsClient interface {
 	// group: emailprovider
 	DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error)
 	// group: sms
+	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 	SendSms(ctx context.Context, in *SmsInfo, opts ...grpc.CallOption) (*BaseUUIDResp, error)
 	// SmsLog management
 	// group: smslog
@@ -2531,6 +2533,15 @@ func (c *mcmsClient) GetEmailProviderById(ctx context.Context, in *IDReq, opts .
 func (c *mcmsClient) DeleteEmailProvider(ctx context.Context, in *IDsReq, opts ...grpc.CallOption) (*BaseResp, error) {
 	out := new(BaseResp)
 	err := c.cc.Invoke(ctx, Mcms_DeleteEmailProvider_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *mcmsClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Mcms_InitDatabase_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2665,6 +2676,7 @@ type McmsServer interface {
 	// group: emailprovider
 	DeleteEmailProvider(context.Context, *IDsReq) (*BaseResp, error)
 	// group: sms
+	InitDatabase(context.Context, *Empty) (*BaseResp, error)
 	SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error)
 	// SmsLog management
 	// group: smslog
@@ -2727,6 +2739,9 @@ func (UnimplementedMcmsServer) GetEmailProviderById(context.Context, *IDReq) (*E
 }
 func (UnimplementedMcmsServer) DeleteEmailProvider(context.Context, *IDsReq) (*BaseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteEmailProvider not implemented")
+}
+func (UnimplementedMcmsServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
 }
 func (UnimplementedMcmsServer) SendSms(context.Context, *SmsInfo) (*BaseUUIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendSms not implemented")
@@ -2968,6 +2983,24 @@ func _Mcms_DeleteEmailProvider_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(McmsServer).DeleteEmailProvider(ctx, req.(*IDsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mcms_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(McmsServer).InitDatabase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mcms_InitDatabase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(McmsServer).InitDatabase(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3222,6 +3255,10 @@ var Mcms_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Mcms_DeleteEmailProvider_Handler,
 		},
 		{
+			MethodName: "initDatabase",
+			Handler:    _Mcms_InitDatabase_Handler,
+		},
+		{
 			MethodName: "sendSms",
 			Handler:    _Mcms_SendSms_Handler,
 		},
@@ -3271,6 +3308,7 @@ var Mcms_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Job_InitDatabase_FullMethodName   = "/core.Job/initDatabase"
 	Job_CreateTask_FullMethodName     = "/core.Job/createTask"
 	Job_UpdateTask_FullMethodName     = "/core.Job/updateTask"
 	Job_GetTaskList_FullMethodName    = "/core.Job/getTaskList"
@@ -3287,6 +3325,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JobClient interface {
+	InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 	// Task management
 	// group: task
 	CreateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
@@ -3317,6 +3356,15 @@ type jobClient struct {
 
 func NewJobClient(cc grpc.ClientConnInterface) JobClient {
 	return &jobClient{cc}
+}
+
+func (c *jobClient) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	out := new(BaseResp)
+	err := c.cc.Invoke(ctx, Job_InitDatabase_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *jobClient) CreateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseIDResp, error) {
@@ -3413,6 +3461,7 @@ func (c *jobClient) DeleteTaskLog(ctx context.Context, in *IDsReq, opts ...grpc.
 // All implementations must embed UnimplementedJobServer
 // for forward compatibility
 type JobServer interface {
+	InitDatabase(context.Context, *Empty) (*BaseResp, error)
 	// Task management
 	// group: task
 	CreateTask(context.Context, *TaskInfo) (*BaseIDResp, error)
@@ -3442,6 +3491,9 @@ type JobServer interface {
 type UnimplementedJobServer struct {
 }
 
+func (UnimplementedJobServer) InitDatabase(context.Context, *Empty) (*BaseResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitDatabase not implemented")
+}
 func (UnimplementedJobServer) CreateTask(context.Context, *TaskInfo) (*BaseIDResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTask not implemented")
 }
@@ -3483,6 +3535,24 @@ type UnsafeJobServer interface {
 
 func RegisterJobServer(s grpc.ServiceRegistrar, srv JobServer) {
 	s.RegisterService(&Job_ServiceDesc, srv)
+}
+
+func _Job_InitDatabase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).InitDatabase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_InitDatabase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).InitDatabase(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Job_CreateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -3672,6 +3742,10 @@ var Job_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "core.Job",
 	HandlerType: (*JobServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "initDatabase",
+			Handler:    _Job_InitDatabase_Handler,
+		},
 		{
 			MethodName: "createTask",
 			Handler:    _Job_CreateTask_Handler,

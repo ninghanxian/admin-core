@@ -7,7 +7,7 @@ import (
 
 	"github.com/qmcloud/admin-core/api/internal/svc"
 	"github.com/qmcloud/admin-core/api/internal/types"
-	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	"github.com/qmcloud/admin-core/rpc/client/mcms"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

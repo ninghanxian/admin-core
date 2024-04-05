@@ -83,6 +83,7 @@ type (
 	UsernameReq              = core.UsernameReq
 
 	Job interface {
+		InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error)
 		// Task management
 		CreateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseIDResp, error)
 		UpdateTask(ctx context.Context, in *TaskInfo, opts ...grpc.CallOption) (*BaseResp, error)
@@ -106,6 +107,11 @@ func NewJob(cli zrpc.Client) Job {
 	return &defaultJob{
 		cli: cli,
 	}
+}
+
+func (m *defaultJob) InitDatabase(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*BaseResp, error) {
+	client := core.NewJobClient(m.cli.Conn())
+	return client.InitDatabase(ctx, in, opts...)
 }
 
 // Task management
