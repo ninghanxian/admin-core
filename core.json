@@ -1156,6 +1156,14 @@
         }
       }
     },
+    "/menu/content-data": {
+      "get": {
+        "tags": [
+          "menu"
+        ],
+        "operationId": "GetContent"
+      }
+    },
     "/menu/create": {
       "post": {
         "description": "Create menu information | 创建菜单",
@@ -1228,6 +1236,14 @@
             }
           }
         }
+      }
+    },
+    "/menu/popularlist": {
+      "get": {
+        "tags": [
+          "menu"
+        ],
+        "operationId": "GetPopularlist"
       }
     },
     "/menu/role/list": {
@@ -3451,6 +3467,30 @@
       },
       "x-go-package": "github.com/qmcloud/admin-core/api/internal/types"
     },
+    "ContentListResp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResContentResp"
+          },
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/qmcloud/admin-core/api/internal/types"
+    },
     "CreateOrUpdateApiAuthorityReq": {
       "description": "Create or update api authorization information request | 创建或更新API授权信息",
       "type": "object",
@@ -5654,6 +5694,21 @@
           "type": "string",
           "maxLength": 20,
           "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/qmcloud/admin-core/api/internal/types"
+    },
+    "ResContentResp": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "string",
+          "x-go-name": "X"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Y"
         }
       },
       "x-go-package": "github.com/qmcloud/admin-core/api/internal/types"

@@ -658,6 +658,18 @@ type MenuPlainInfoListResp struct {
 	Data MenuPlainInfoList `json:"data"`
 }
 
+// swagger:model ContentListResp
+type ContentListResp struct {
+	BaseMsgResp
+	Data []ResContentResp `json:"data"`
+}
+
+// swagger:model ResContentResp
+type ResContentResp struct {
+	X string `json:"x"`
+	Y int64  `json:"y"`
+}
+
 // The information of captcha | 验证码数据
 // swagger:model CaptchaInfo
 type CaptchaInfo struct {

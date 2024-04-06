@@ -223,6 +223,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/menu/role/list",
 					Handler: menu.GetMenuListByRoleHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/menu/content-data",
+					Handler: menu.GetContentHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/menu/popularlist",
+					Handler: menu.GetPopularlistHandler(serverCtx),
+				},
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),

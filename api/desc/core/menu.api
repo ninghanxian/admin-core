@@ -205,7 +205,17 @@ type (
         // Menu list data | Menu列表数据
         Data MenuPlainInfoList `json:"data"`
     }
+    ContentListResp{
+        BaseMsgResp
+        Data []ResContentResp `json:"data"`
+    }
+    ResContentResp {
+        X string `json:"x"`
+        Y int64  `json:"y"`
+    }
 )
+
+
 
 @server(
     jwt: Auth
@@ -233,4 +243,11 @@ service Core {
     // Get menu list by role | 获取菜单列表
     @handler getMenuListByRole
     get /menu/role/list returns (MenuListResp)
+    //获取图坐标
+    @handler getContent
+    get /menu/content-data returns (ContentListResp)
+
+    @handler  getPopularlist
+    get /menu/popularlist returns (MenuListResp)
+
 }
