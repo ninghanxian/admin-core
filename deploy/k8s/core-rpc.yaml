@@ -42,14 +42,14 @@ spec:
           - name: timezone
             mountPath: /etc/localtime
           - mountPath: /home/data
-            name: simple-admin-pv
+            name: admin-pv
       volumes:
         - name: timezone
           hostPath:
             path: /usr/share/zoneinfo/Asia/Shanghai
-        - name: simple-admin-pv
+        - name: admin-pv
           persistentVolumeClaim:
-            claimName: simple-admin-pv-claim
+            claimName: admin-pv-claim
 
 ---
 

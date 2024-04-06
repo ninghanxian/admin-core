@@ -5,7 +5,7 @@ volumes:
   redis:
 
 networks:
-  simple-admin:
+  admin:
     driver: bridge
 
 services:
@@ -22,7 +22,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
     networks:
-      simple-admin:
+      admin:
         aliases:
           - mysqlserver
     deploy:
@@ -43,7 +43,7 @@ services:
     volumes:
       - redis:/data
     networks:
-      simple-admin:
+      admin:
         aliases:
           - redisserver
     deploy:

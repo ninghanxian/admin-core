@@ -7,7 +7,7 @@ volumes:
 
 
 networks:
-  simple-admin:
+  admin:
     driver: bridge
 
 services:
@@ -20,11 +20,11 @@ services:
       - '3306:3306'
     environment:
       MYSQL_DATABASE: 'simple_admin'
-      MYSQL_ROOT_PASSWORD: 'simple-admin.'
+      MYSQL_ROOT_PASSWORD: 'admin.'
     volumes:
       - mysql:/var/lib/mysql
     networks:
-      simple-admin:
+      admin:
         aliases:
           - mysql-server
     deploy:
@@ -45,7 +45,7 @@ services:
     volumes:
       - redis:/data
     networks:
-      simple-admin:
+      admin:
         aliases:
           - redis-server
     deploy:
@@ -66,11 +66,11 @@ services:
     environment:
       DATABASE_TYPE: 'mysql'
       DATABASE_USERNAME: 'root'
-      DATABASE_PASSWORD: 'simple-admin.'
+      DATABASE_PASSWORD: 'admin.'
       DATABASE_HOST: 'mysql-server'
       DATABASE_PORT: 3306
     networks:
-      simple-admin:
+      admin:
         aliases:
           - core-rpc
     deploy:
@@ -91,11 +91,11 @@ services:
     environment:
       DATABASE_TYPE: 'mysql'
       DATABASE_USERNAME: 'root'
-      DATABASE_PASSWORD: 'simple-admin.'
+      DATABASE_PASSWORD: 'admin.'
       DATABASE_HOST: 'mysql-server'
       DATABASE_PORT: 3306
     networks:
-      simple-admin:
+      admin:
         aliases:
           - job-rpc
     deploy:
@@ -116,13 +116,13 @@ services:
       DATABASE_TYPE: 'mysql'
       DATABASE_HOST: 'mysql-server'
       DATABASE_USERNAME: 'root'
-      DATABASE_PASSWORD: 'simple-admin.'
+      DATABASE_PASSWORD: 'admin.'
       DATABASE_PORT: 3306
     #      AUTH_SECRET: 'jS6VKDtsJf3z1n2VKDtsJf3z1n2'
     ports:
       - '9100:9100'
     networks:
-      simple-admin:
+      admin:
         aliases:
           - core-api
     deploy:
@@ -141,7 +141,7 @@ services:
     ports:
       - '80:80'
     networks:
-      simple-admin:
+      admin:
         aliases:
           - backend-ui
     deploy:
@@ -163,7 +163,7 @@ services:
     environment:
       DATABASE_TYPE: 'mysql'
       DATABASE_USERNAME: 'root'
-      DATABASE_PASSWORD: 'simple-admin.'
+      DATABASE_PASSWORD: 'admin.'
       DATABASE_HOST: 'mysql-server'
       DATABASE_PORT: 3306
     ports:
@@ -172,7 +172,7 @@ services:
     volumes:
       - fms:/home/data
     networks:
-      simple-admin:
+      admin:
         aliases:
           - fms-api
     deploy:
@@ -191,14 +191,14 @@ services:
     environment:
       DATABASE_TYPE: 'mysql'
       DATABASE_USERNAME: 'root'
-      DATABASE_PASSWORD: 'simple-admin.'
+      DATABASE_PASSWORD: 'admin.'
       DATABASE_HOST: 'mysql-server'
       DATABASE_PORT: 3306
     #      EMAIL_ADDR: xxx@gamil.com
     #    ports:
     #      - '9106:9106'
     networks:
-      simple-admin:
+      admin:
         aliases:
           - mcms-rpc
     deploy:

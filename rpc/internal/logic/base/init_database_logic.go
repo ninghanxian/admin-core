@@ -157,7 +157,7 @@ func (l *InitDatabaseLogic) insertUserData() error {
 	users = append(users, l.svcCtx.DB.User.Create().
 		SetUsername("admin").
 		SetNickname("admin").
-		SetPassword(encrypt.BcryptEncrypt("simple-admin")).
+		SetPassword(encrypt.BcryptEncrypt("admin")).
 		SetEmail("simple_admin@gmail.com").
 		AddRoleIDs(1).
 		SetDepartmentID(1).

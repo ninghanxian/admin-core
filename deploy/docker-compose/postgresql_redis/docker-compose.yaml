@@ -5,7 +5,7 @@ volumes:
   redis:
 
 networks:
-  simple-admin:
+  admin:
     driver: bridge
 
 services:
@@ -21,7 +21,7 @@ services:
     volumes:
       - 'postgresql:/bitnami/postgresql'
     networks:
-      simple-admin:
+      admin:
         aliases:
           - postgresqlserver
     deploy:
@@ -42,7 +42,7 @@ services:
     volumes:
       - redis:/data
     networks:
-      simple-admin:
+      admin:
         aliases:
           - redisserver
     deploy:

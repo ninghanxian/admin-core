@@ -7,7 +7,7 @@ DatabaseConf:
   Port: 5432
   DBName: simple_admin
   Username: postgres # set your username
-  Password: simple-admin. # set your password
+  Password: admin. # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5
